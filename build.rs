@@ -54,17 +54,21 @@ fn opencv_include() -> &'static str {
 fn opencv_link() {
     println!("cargo:rustc-link-search=native=/usr/local/lib");
     println!("cargo:rustc-link-lib=opencv_core");
+    println!("cargo:rustc-link-lib=opencv_objdetect");
+    println!("cargo:rustc-link-lib=opencv_videoio");
+    println!("cargo:rustc-link-lib=opencv_video");
     println!("cargo:rustc-link-lib=opencv_features2d");
     println!("cargo:rustc-link-lib=opencv_xfeatures2d");
     println!("cargo:rustc-link-lib=opencv_highgui");
     println!("cargo:rustc-link-lib=opencv_imgcodecs");
     println!("cargo:rustc-link-lib=opencv_imgproc");
-    println!("cargo:rustc-link-lib=opencv_objdetect");
-    println!("cargo:rustc-link-lib=opencv_text");
-    println!("cargo:rustc-link-lib=opencv_videoio");
-    println!("cargo:rustc-link-lib=opencv_video");
+
     if cfg!(feature = "cuda") {
         println!("cargo:rustc-link-lib=opencv_cudaobjdetect");
+    }
+    if cfg!(feature = "text") {
+        println!("cargo:rustc-link-lib=opencv_text");
+
     }
 }
 
@@ -77,6 +81,8 @@ fn main() {
         .files(files)
         .include("native")
         .include(opencv_include());
+
+    
 
     if cfg!(not(target_env = "msvc")) {
         opencv_config.flag("--std=c++11");
@@ -117,5 +123,6 @@ fn get_files(path: &str) -> Vec<std::path::PathBuf> {
         .into_iter()
         .filter_map(|x| x.ok().map(|x| x.path()))
         .filter(|x| x.extension().map(|e| e == "cc").unwrap_or(false))
+        .filter(|x| x.file_name().map(|e| e != "text.cc").unwrap_or(false))
         .collect::<Vec<_>>()
 }

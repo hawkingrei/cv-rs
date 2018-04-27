@@ -29,6 +29,7 @@ pub mod highgui;
 pub mod video;
 pub mod objdetect;
 pub mod features2d;
+#[cfg(feature = "text")]
 pub mod text;
 #[cfg(feature = "cuda")]
 pub mod cuda;
