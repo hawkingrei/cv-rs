@@ -21,8 +21,6 @@ impl CMat {
 
 extern "C" {
     fn cv_mat_new() -> *mut CMat;
-    fn cv_mat_resize(sz: usize);
-    //fn cv_mat_resize(sz: usize, s: Scalar);
     fn cv_mat_from_file_storage(path: *const c_char, section: *const c_char) -> *mut CMat;
     fn cv_mat_new_with_size(rows: c_int, cols: c_int, t: c_int) -> *mut CMat;
     fn cv_mat_zeros(rows: c_int, cols: c_int, t: c_int) -> *mut CMat;
