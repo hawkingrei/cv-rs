@@ -4,6 +4,7 @@
 #include "common.h"
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
+#include <vector>
 
 extern "C" {
 
@@ -38,7 +39,7 @@ void cv_calc_back_project(const cv::Mat* images,
                           cv::Mat* back_project,
                           const float** ranges);
 void cv_compare_hist(cv::Mat* first_image, cv::Mat* second_image, int method, Result<double>* result);
-void cv_cvtColor(cv::InputArray src, cv::OutputArray dst, int code, int dstCn);
+void cv_cvtColor(int* src, int src_len, int* dst, int dst_len, int code, int dstCn);
 }
 
 #endif  // CV_RS_IMGPROC_H

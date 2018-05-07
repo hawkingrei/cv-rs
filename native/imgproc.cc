@@ -1,4 +1,5 @@
 #include "imgproc.h"
+#include <vector>
 
 extern "C" {
 
@@ -71,6 +72,8 @@ void cv_compare_hist(cv::Mat* first_image, cv::Mat* second_image, int method, Re
 }
 }
 
-void cv_cvtColor(cv::InputArray src, cv::OutputArray dst, int code, int dstCn) {
-    cv::cvtColor(src, dst, code, dstCn);
+void cv_cvtColor(int* src, int src_len, int* dst, int dst_len, int code, int dstCn) {
+    std::vector<int> vsrc(src, src + src_len);
+    std::vector<int> vdst(dst, dst + dst_len);
+    cv::cvtColor(vsrc, vdst, code, dstCn);
 }

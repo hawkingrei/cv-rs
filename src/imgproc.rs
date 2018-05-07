@@ -69,6 +69,8 @@ extern "C" {
         method: HistogramComparisionMethod,
         result: *mut CResult<c_double>,
     );
+
+    fn cv_cvtColor(src: *const c_int,src_len: c_int, dst: *const c_int,dst_len: c_int,  code:c_int,  dstCn: c_int);
 }
 
 /// Possible methods for histogram comparision method
