@@ -70,3 +70,7 @@ void cv_compare_hist(cv::Mat* first_image, cv::Mat* second_image, int method, Re
         [first_image, second_image, method]() { return cv::compareHist(*first_image, *second_image, method); });
 }
 }
+
+void cv_cvtColor(cv::InputArray src, cv::OutputArray dst, int code, int dstCn) {
+    cv::cvtColor(src, dst, code, dstCn);
+}
