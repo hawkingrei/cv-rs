@@ -68,7 +68,6 @@ fn opencv_link() {
     }
     if cfg!(feature = "text") {
         println!("cargo:rustc-link-lib=opencv_text");
-
     }
 }
 

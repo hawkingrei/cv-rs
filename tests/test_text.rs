@@ -3,6 +3,7 @@ mod utils;
 
 use cv::*;
 use cv::imgcodecs::ImageReadMode;
+#[cfg(feature = "text")]
 use cv::text::*;
 use utils::*;
 
@@ -51,6 +52,7 @@ mod tesseract {
 }
 
 #[test]
+#[cfg(feature = "text")]
 fn ocr_hmm_test() {
     let image_path = get_asset_path("Ubuntu.png");
     let classifier_name = get_asset_path("OCRHMM_knn_model_data.xml.gz");
@@ -78,6 +80,7 @@ fn ocr_hmm_test() {
 }
 
 #[test]
+#[cfg(feature = "text")]
 #[should_panic]
 fn ocr_holistic_word_panic() {
     let _ = OcrHolisticWord::new("a", "a", "a").unwrap();
