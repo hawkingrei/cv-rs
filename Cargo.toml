@@ -1,10 +1,10 @@
 [package]
 name = "cv"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["Ben Zhang <benzh@cs.berkeley.edu>"]
 build = "build.rs"
-repository = "https://github.com/nebgnahz/cv-rs.git"
-homepage = "https://github.com/nebgnahz/cv-rs.git"
+repository = "https://github.com/hawkingrei/cv-rs.git"
+homepage = "https://github.com/hawkingrei/cv-rs.git"
 license = "MIT"
 readme = "README.md"
 documentation = "rust-vision.s3-website-us-west-2.amazonaws.com"
