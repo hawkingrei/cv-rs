@@ -88,7 +88,7 @@ unsigned long gif_frame_resize(unsigned char* ptr, unsigned long length, int wid
     cv::Mat rf = cv::Mat(dsize, CV_32SC3);
     cv::resize(r, rf, dsize);
 
-    cv::Mat rrf = cv::Mat(dsize, CV_8SC4);
+    cv::Mat rrf = cv::Mat(dsize, CV_32SC4);
     cv::cvtColor(rf, rrf, cv::COLOR_RGB2RGBA, 0);
     rptr = (&rrf)->data;
     return sizeof((&rrf)->data) / sizeof(uchar);
