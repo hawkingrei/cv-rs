@@ -1,5 +1,6 @@
 #include "imgproc.h"
 #include <iostream>
+#include <stdio.h>
 #include <vector>
 
 extern "C" {
@@ -83,7 +84,7 @@ unsigned long gif_frame_resize(unsigned char* ptr, unsigned long length, int wid
     std::vector<unsigned char> vptr(ptr, ptr + length);
     cv::Mat r;
     cv::cvtColor(vptr, r, cv::COLOR_RGBA2RGB, 0);
-
+    printf("%s \n", "hello");
     cv::Size dsize = cv::Size(width, height);
     cv::Mat rf = cv::Mat(dsize, CV_32SC3);
     cv::resize(r, rf, dsize);
