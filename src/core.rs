@@ -359,6 +359,21 @@ pub enum CvType {
     Cv32FC3 = 21,
     /// 32 bit float, three channels (RGB image)
     Cv64FC3 = 22,
+
+    /// 8 bit unsigned, four channels (RGBA image)
+    Cv8UC4 = 24,
+    /// 8 bit signed, four channels (RGBA image)
+    Cv8SC4 = 25,
+    /// 16 bit unsigned, four channels (RGBA image)
+    Cv16UC4 = 26,
+    /// 16 bit signed, four channels (RGBA image)
+    Cv16SC4 = 27,
+    /// 32 bit signed, four channels (RGBA image)
+    Cv32SC4 = 28,
+    /// 32 bit float, four channels (RGBA image)
+    Cv32FC4 = 29,
+    /// 32 bit float, four channels (RGBA image)
+    Cv64FC4 = 30,
 }
 
 /// This struct represents a rotated (i.e. not up-right) rectangle. Each
