@@ -83,8 +83,9 @@ void cv_cvtColor(int* src, int src_len, int* dst, int dst_len, int code, int dst
 unsigned long gif_frame_resize(unsigned char* ptr, unsigned long length, int width, int height, uchar* rptr) {
     std::vector<unsigned char> vptr(ptr, ptr + length);
     cv::Mat r;
-    cv::cvtColor(vptr, r, cv::COLOR_RGBA2RGB, 0);
     printf("%s \n", "hello");
+    cv::cvtColor(vptr, r, cv::COLOR_RGBA2RGB, 0);
+
     cv::Size dsize = cv::Size(width, height);
     cv::Mat rf = cv::Mat(dsize, CV_32SC3);
     cv::resize(r, rf, dsize);
