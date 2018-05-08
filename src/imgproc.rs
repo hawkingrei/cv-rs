@@ -453,4 +453,15 @@ impl Mat {
     fn matrix_to_vec<T, MElem: AsRef<[T]>, M: AsRef<[MElem]>>(value: M) -> Vec<*const T> {
         value.as_ref().iter().map(|x| x.as_ref().as_ptr()).collect::<Vec<_>>()
     }
+
+    // make frame resize
+    pub unsafe fn cv_gif_frame_resize(
+        ptr: *const libc::uint8_t,
+        length: libc::size_t,
+        width: *mut u16,
+        height: *mut u16,
+        rptr: *mut u8,
+    ) -> usize {
+        return gif_frame_resize(ptr, length, width, height, rptr);
+    }
 }
