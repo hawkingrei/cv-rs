@@ -1,8 +1,9 @@
 //! Image processing, see [OpenCV
 //! imgproc](http://docs.opencv.org/3.1.0/d7/dbd/group__imgproc.html).
 
-use super::*;
 use super::core::*;
+use super::*;
+use libc;
 use std::os::raw::{c_double, c_float, c_int};
 
 // =============================================================================
@@ -70,7 +71,15 @@ extern "C" {
         result: *mut CResult<c_double>,
     );
 
-    fn cv_cvtColor(src: *const c_int,src_len: c_int, dst: *const c_int,dst_len: c_int,  code:c_int,  dstCn: c_int);
+    fn cv_cvtColor(src: *const c_int, src_len: c_int, dst: *const c_int, dst_len: c_int, code: c_int, dstCn: c_int);
+
+    fn gif_frame_resize(
+        ptr: *const libc::uint8_t,
+        length: libc::size_t,
+        width: *mut u16,
+        height: *mut u16,
+        rptr: *mut u8,
+    ) -> usize;
 }
 
 /// Possible methods for histogram comparision method
@@ -442,10 +451,6 @@ impl Mat {
     }
 
     fn matrix_to_vec<T, MElem: AsRef<[T]>, M: AsRef<[MElem]>>(value: M) -> Vec<*const T> {
-        value
-            .as_ref()
-            .iter()
-            .map(|x| x.as_ref().as_ptr())
-            .collect::<Vec<_>>()
+        value.as_ref().iter().map(|x| x.as_ref().as_ptr()).collect::<Vec<_>>()
     }
 }

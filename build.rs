@@ -81,8 +81,6 @@ fn main() {
         .include("native")
         .include(opencv_include());
 
-    
-
     if cfg!(not(target_env = "msvc")) {
         opencv_config.flag("--std=c++11");
     }

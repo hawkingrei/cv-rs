@@ -1,4 +1,5 @@
 #include "imgproc.h"
+#include <iostream>
 #include <vector>
 
 extern "C" {
@@ -76,4 +77,19 @@ void cv_cvtColor(int* src, int src_len, int* dst, int dst_len, int code, int dst
     std::vector<int> vsrc(src, src + src_len);
     std::vector<int> vdst(dst, dst + dst_len);
     cv::cvtColor(vsrc, vdst, code, dstCn);
+}
+
+unsigned long gif_frame_resize(unsigned char* ptr, unsigned long length, int width, int height, uchar* rptr) {
+    std::vector<unsigned char> vptr(ptr, ptr + length);
+    cv::Mat r;
+    cv::cvtColor(vptr, r, cv::COLOR_RGBA2RGB, 0);
+
+    cv::Size dsize = cv::Size(width, height);
+    cv::Mat rf = cv::Mat(dsize, CV_32SC3);
+    cv::resize(r, rf, dsize);
+
+    cv::Mat rrf = cv::Mat(dsize, CV_8SC4);
+    cv::cvtColor(rf, rrf, cv::COLOR_RGB2RGBA, 0);
+    rptr = (&rrf)->data;
+    return sizeof((&rrf)->data) / sizeof(uchar);
 }
